@@ -26,6 +26,7 @@
     <section class="page-header">
         <div class="container">
             <h2>Boeken Catalogus</h2>
+            <p>Vind hier alle beschikbare boeken</p>
         </div>
     </section>
 
