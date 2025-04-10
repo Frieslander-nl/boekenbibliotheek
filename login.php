@@ -1,6 +1,6 @@
 <?php require_once 'connect.php'; ?>
 <?php
-// Simpele logincheck (voor demo-doeleinden, géén productiecode!)
+// Simpele logincheck 
 session_start();
 
 $users = [
