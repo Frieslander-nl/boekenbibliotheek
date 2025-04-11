@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Overview - City Library</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
@@ -15,10 +16,11 @@
             </div>
             <nav>
                 <ul>
-                <li><a href="home.php" class="active">Home</a></li>
+                    <li><a href="home.php">Home</a></li>
                     <li><a href="index.php">Boeken</a></li>
                     <li><a href="overview.php" class="active">Leners</a></li>
                 </ul>
+                <a href="login.php" class="login-icon" title="Login"><i class="fas fa-user"></i></a>
             </nav>
         </div>
     </header>
@@ -57,7 +59,6 @@
             </form>
 
             <?php
-            // Handle user submission
             if (isset($_POST['submit2'])) {
                 $naam = $_POST['naam'];
                 $email = $_POST['email'];
@@ -72,7 +73,6 @@
                 }
             }
 
-            // Handle user deletion
             if (isset($_GET['delete_user'])) {
                 $id = $_GET['delete_user'];
                 $sql = "DELETE FROM gebruikers WHERE id = '$id'";
@@ -112,6 +112,7 @@
                                 echo "<td>" . $row['boekengeleend'] . "</td>";
                                 echo "<td>";
                                 echo "<a href='overview.php?delete_user=" . $row['id'] . "' class='action-btn delete' onclick='return confirm(\"Are you sure you want to delete this user?\");'>Delete</a>";
+                                echo "<a href='edit_user.php?id=" . $row['id'] . "' class='action-btn edit'>Bewerk</a>";
                                 echo "</td>";
                                 echo "</tr>";
                             }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Catalog - De Boeken Bibliotheek</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
@@ -15,10 +16,11 @@
             </div>
             <nav>
                 <ul>
-                <li><a href="home.php" class="active">Home</a></li>
+                    <li><a href="home.php">Home</a></li>
                     <li><a href="index.php" class="active">Boeken</a></li>
                     <li><a href="overview.php">Leners</a></li>
                 </ul>
+                <a href="login.php" class="login-icon" title="Login"><i class="fas fa-user"></i></a><!--Knop locatie fixen!-->
             </nav>
         </div>
     </header>
@@ -33,7 +35,8 @@
     <section class="system-section">
         <div class="container">
             <div class="system-header">
-                <h3>Voeg een nieuw boek toe.</h3>
+                <h2>Boek terug brengen?</h2>
+                <h3>Voeg een het geleende boek in.</h3>
             </div>
             <form action="index.php" method="POST" class="system-table">
                 <div class="service-card">
@@ -73,12 +76,12 @@
                 }
             }
 
-            // Handle book deletion
+            // Handle boek leen
             if (isset($_GET['delete_book'])) {
                 $id = $_GET['delete_book'];
                 $sql = "DELETE FROM boeken WHERE id = '$id'";
                 if ($conn->query($sql) === TRUE) {
-                    echo "<div class='alert success'>Book successfully deleted</div>";
+                    echo "<div class='alert success'>Het boek is succesvol geleend, veel plezier!</div>";
                 } else {
                     echo "<div class='alert error'>Error deleting book: " . $conn->error . "</div>";
                 }
@@ -101,7 +104,7 @@
                         echo "<p>By " . $row['auteur'] . "</p>";
                         echo "<p>Year: " . $row['year'] . "</p>";
                         echo "<p>Genre: " . $row['genre'] . "</p>";
-                        echo "<a href='index.php?delete_book=" . $row['id'] . "' class='action-btn delete' onclick='return confirm(\"Are you sure you want to delete this book?\");'>Delete</a>";
+                        echo "<a href='index.php?delete_book=" . $row['id'] . "' class='action-btn delete' onclick='return confirm(\"Weet u zeker dat u dit boek wil lenen?\");'>Leen</a>";
                         echo "</div>";
                     }
                 } else {

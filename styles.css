@@ -94,6 +94,11 @@ header .container {
     color: var(--primary-color);
 }
 
+nav {
+    display: flex;
+    align-items: center;
+}
+
 nav ul {
     display: flex;
 }
@@ -123,6 +128,18 @@ nav ul li a.active::after {
     width: 100%;
     height: 2px;
     background-color: var(--primary-color);
+}
+
+.login-icon {
+    margin-left: 30px;
+    font-size: 20px;
+    color: var(--secondary-color);
+    transition: var(--transition);
+}
+
+.login-icon:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
 /* Hero Section */
@@ -496,87 +513,4 @@ footer {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.1);
-}
-
-/* Alert Styles */
-.alert {
-    padding: 12px 15px;
-    border-radius: var(--border-radius);
-    margin-bottom: 20px;
-}
-
-.success {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    border: 1px solid #c8e6c9;
-}
-
-.error {
-    background-color: #ffebee;
-    color: #c62828;
-    border: 1px solid #ffcdd2;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .hero h2 {
-        font-size: 36px;
-    }
-    
-    .hero p {
-        font-size: 18px;
-    }
-    
-    .services h2, 
-    .featured-books h2 {
-        font-size: 30px;
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .system-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .system-header .btn {
-        margin-top: 10px;
-    }
-    
-    .system-tabs {
-        flex-wrap: wrap;
-    }
-    
-    .tab-btn {
-        padding: 10px 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    header .container {
-        flex-direction: column;
-    }
-    
-    nav ul {
-        margin-top: 20px;
-    }
-    
-    nav ul li {
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-    
-    .hero {
-        padding: 60px 0;
-    }
-    
-    .hero h2 {
-        font-size: 28px;
-    }
-    
-    .hero p {
-        font-size: 16px;
-    }
 }

@@ -1,11 +1,13 @@
+<?php require_once 'connect.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
-<head> <!--Edit knop toevoegen-->
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>City Library</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -20,10 +22,11 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="index.php" class="active">Boeken</a></li>
+                    <li><a href="home.php" class="active">Home</a></li>
+                    <li><a href="index.php">Boeken</a></li>
                     <li><a href="overview.php">Leners</a></li>
                 </ul>
+                <a href="login.php" class="login-icon" title="Login"><i class="fas fa-user"></i></a>
             </nav>
         </div>
     </header>
@@ -66,30 +69,25 @@
             <div class="container">
                 <h2>Uitgelichte boeken</h2>
                 <div class="books-grid">
-                    <div class="book-card">
-                        <div class="book-cover"></div>
-                        <h3>The Great Adventure</h3>
-                        <p>By John Smith</p>
-                        <span class="status available">Available</span>
-                    </div>
-                    <div class="book-card">
-                        <div class="book-cover"></div>
-                        <h3>Mystery of the Lost Key</h3>
-                        <p>By Sarah Johnson</p>
-                        <span class="status available">Available</span>
-                    </div>
-                    <div class="book-card">
-                        <div class="book-cover"></div>
-                        <h3>The History of Everything</h3>
-                        <p>By David Williams</p>
-                        <span class="status borrowed">Borrowed</span>
-                    </div>
-                    <div class="book-card">
-                        <div class="book-cover"></div>
-                        <h3>Cooking Masterclass</h3>
-                        <p>By Maria Garcia</p>
-                        <span class="status available">Available</span>
-                    </div>
+                <?php
+                $sql = "SELECT id, titel, auteur, year, genre FROM boeken LIMIT 4";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<div class='book-card'>";
+                        echo "<div class='book-cover'></div>";
+                        echo "<h3>" . $row['titel'] . "</h3>";
+                        echo "<p>By " . $row['auteur'] . "</p>";
+                        echo "<p>Year: " . $row['year'] . "</p>";
+                        echo "<p>Genre: " . $row['genre'] . "</p>";
+                        echo "<a href='index.php?delete_book=" . $row['id'] . "' class='action-btn delete' onclick='return confirm(\"Weet u zeker dat u dit boek wil lenen?\");'>Leen</a>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "<div class='service-card'><p>No books found.</p></div>";
+                }
+                ?>
                 </div>
             </div>
         </section>
