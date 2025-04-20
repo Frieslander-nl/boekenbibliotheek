@@ -1,0 +1,4 @@
+Login gegevens voor de admin
+
+Name: admin
+password: admin123
